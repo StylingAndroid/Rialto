@@ -199,4 +199,4 @@ We can see how we can selectively apply the formatting:
 
 <img src="./images/disable_example.png" width="400" />
 
-There's mopre to come in the way of ducumentation, but this should be enough to grasp the basics and get started with Rialto.
+There's more to come in the way of documentation, but this should be enough to grasp the basics and get started with Rialto.
