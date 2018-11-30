@@ -25,7 +25,7 @@ class RegistryTest {
     fun `Given an empty registry When we register a single key value pair Then the backing collection has a single key item`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value") { characterStyle1 }
+        registry.registerSpanFactory("key", "value") { characterStyle1 }
 
         assertEquals(1, registryMap.size)
     }
@@ -34,7 +34,7 @@ class RegistryTest {
     fun `Given an empty registry When we register a single key value pair Then the backing collection has a single value item`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value") { characterStyle1 }
+        registry.registerSpanFactory("key", "value") { characterStyle1 }
 
         assertEquals(1, registry["key", "value"].size)
     }
@@ -43,7 +43,7 @@ class RegistryTest {
     fun `Given an empty registry When we register a single key value pair Then the backing collection has a single factory item`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value") { characterStyle1 }
+        registry.registerSpanFactory("key", "value") { characterStyle1 }
 
         assertEquals(1, registry["key", "value"].size)
     }
@@ -52,8 +52,8 @@ class RegistryTest {
     fun `Given an empty registry When we register a the same key value pair multiple times Then the backing collection has a single key item`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value") { characterStyle1 }
-        registry.registerFactory("key", "value") { characterStyle2 }
+        registry.registerSpanFactory("key", "value") { characterStyle1 }
+        registry.registerSpanFactory("key", "value") { characterStyle2 }
 
         assertEquals(1, registryMap.size)
     }
@@ -62,8 +62,8 @@ class RegistryTest {
     fun `Given an empty registry When we register a the same key value pair multiple times Then the backing collection has a two value items`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value") { characterStyle1 }
-        registry.registerFactory("key", "value") { characterStyle2 }
+        registry.registerSpanFactory("key", "value") { characterStyle1 }
+        registry.registerSpanFactory("key", "value") { characterStyle2 }
 
         assertEquals(2, registry["key", "value"].size)
     }
@@ -72,8 +72,8 @@ class RegistryTest {
     fun `Given an empty registry When we register a the two key values Then the backing collection has a two value items`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value1") { characterStyle1 }
-        registry.registerFactory("key", "value2") { characterStyle1 }
+        registry.registerSpanFactory("key", "value1") { characterStyle1 }
+        registry.registerSpanFactory("key", "value2") { characterStyle1 }
 
         assertEquals(2, registryMap["key"]?.size)
     }
@@ -82,8 +82,8 @@ class RegistryTest {
     fun `Given an empty registry When we register a the two key values Then the backing collection has separate factory items`() {
         createEmptyRegistry()
 
-        registry.registerFactory("key", "value1") { characterStyle1 }
-        registry.registerFactory("key", "value2") { characterStyle1 }
+        registry.registerSpanFactory("key", "value1") { characterStyle1 }
+        registry.registerSpanFactory("key", "value2") { characterStyle1 }
 
         assertEquals(1, registry["key", "value1"].size)
         assertEquals(1, registry["key", "value2"].size)
@@ -93,7 +93,7 @@ class RegistryTest {
     fun `Given an initialised parent registry When we clone it Then the backing collection has identical factory items`() {
         createEmptyRegistry()
         val factory: () -> Any = { characterStyle1 }
-        registry.registerFactory("key", "value1", factory)
+        registry.registerSpanFactory("key", "value1", factory)
 
         val child = Registry(registry)
 

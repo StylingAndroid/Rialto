@@ -3,7 +3,7 @@ ext {
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
 
-    androidBuildToolsVersion = '3.4.0-alpha05'
+    androidBuildToolsVersion = '3.4.0-alpha06'
 
     supportLibraryVersion = '28.0.0'
     androidXLibraryVersion = '1.0.2'
@@ -29,16 +29,16 @@ ext {
             kotlinStdLib           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
             kotlinCoroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion",
             kotlinCoroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion",
-            material: "com.google.android.material:material:$materialVersion"
+            material               : "com.google.android.material:material:$materialVersion"
     ]
 
     androidXLibraries = [
-            appCompat: "androidx.appcompat:appcompat:$androidXLibraryVersion",
+            appCompat       : "androidx.appcompat:appcompat:$androidXLibraryVersion",
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     ]
 
     supportLibraries = [
-            appCompat: "com.android.support:appcompat-v7:$supportLibraryVersion",
+            appCompat       : "com.android.support:appcompat-v7:$supportLibraryVersion",
             constraintLayout: "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     ]
 
@@ -50,8 +50,8 @@ ext {
     ]
 
     androidTestLibraries = [
-            runner: "com.android.support.test:runner:$runnerVersion",
-            espressoCore: "com.android.support.test.espresso:espresso-core:$espressoVersion",
+            runner       : "com.android.support.test:runner:$runnerVersion",
+            espressoCore : "com.android.support.test.espresso:espresso-core:$espressoVersion",
             espressoRules: "com.android.support.test:rules:$espressoRulesVersion"
     ]
 }
