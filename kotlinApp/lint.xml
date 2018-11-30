@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+  <issue id="VectorPath" severity="ignore" />
+  <issue id="Autofill" severity="ignore" />
+  <issue id="LabelFor" severity="ignore" />
+</lint>

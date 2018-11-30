@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    defaultConfig {
+        applicationId "com.stylingandroid.rialto.java"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "libtype"
+
+    productFlavors {
+        support {
+            dimension "libtype"
+            applicationIdSuffix ".support"
+        }
+        androidx {
+            dimension "libtype"
+            applicationIdSuffix ".androidx"
+        }
+        material {
+            dimension "libtype"
+            applicationIdSuffix ".material"
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation libraries.kotlinStdLib
+    implementation project(path: ':library')
+    androidxImplementation androidXLibraries.appCompat
+    androidxImplementation androidXLibraries.constraintLayout
+    supportImplementation supportLibraries.appCompat
+    supportImplementation supportLibraries.constraintLayout
+    materialImplementation libraries.material
+    materialImplementation androidXLibraries.constraintLayout
+}

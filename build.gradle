@@ -1,0 +1,33 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    apply from: 'dependencies.gradle'
+
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath buildPlugins.androidGradlePlugin
+        classpath buildPlugins.kotlinGradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+    ext {
+        groupId = "com.stylingandroid.rialto"
+        libraryVersion = "1.0.0"
+        libraryCode = 100
+        siteUrl = 'https://github.com/StylingAndroid/Rialto'
+        gitUrl = 'https://github.com/StylingAndroid/Rialto.git'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

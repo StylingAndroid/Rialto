@@ -1,0 +1,72 @@
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0-RC11"
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.stylingandroid.rialto.kotlin"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "libtype"
+
+    productFlavors {
+        support {
+            dimension "libtype"
+            applicationIdSuffix ".support"
+        }
+        androidx {
+            dimension "libtype"
+            applicationIdSuffix ".androidx"
+        }
+        material {
+            dimension "libtype"
+            applicationIdSuffix ".material"
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    useLibrary 'android.test.runner'
+
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+}
+
+detekt {
+    version = "1.0.0-RC11"
+    input = files("src/main/java", "src/androidx/java", "src/support/java")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+}
+
+dependencies {
+    implementation libraries.kotlinStdLib
+    implementation project(path: ':library')
+    androidxImplementation androidXLibraries.appCompat
+    androidxImplementation androidXLibraries.constraintLayout
+    supportImplementation supportLibraries.appCompat
+    supportImplementation supportLibraries.constraintLayout
+    materialImplementation libraries.material
+    materialImplementation androidXLibraries.constraintLayout
+    testImplementation testLibraries.junit4
+//    androidTestImplementation androidTestLibraries.runner
+//    androidTestImplementation androidTestLibraries.espressoCore
+//    androidTestImplementation androidTestLibraries.espressoRules
+    androidTestImplementation 'com.agoda.kakao:kakao:1.0.0'
+}
