@@ -41,10 +41,8 @@ class MainActivity : RialtoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        factory.apply {
-            registerSpan("format", "bold") { StyleSpan(Typeface.BOLD) }
-            registerSpan("format", "italic") { StyleSpan(Typeface.ITALIC) }
-        }
+        registerSpanFactory("format", "bold") { StyleSpan(Typeface.BOLD) }
+        registerSpanFactory("format", "italic") { StyleSpan(Typeface.ITALIC) }
         setContentView(R.layout.activity_main)
     }
 }
