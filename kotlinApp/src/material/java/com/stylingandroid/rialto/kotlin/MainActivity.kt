@@ -6,6 +6,7 @@ import android.text.style.StyleSpan
 import androidx.appcompat.app.AppCompatActivity
 import com.stylingandroid.rialto.RialtoDelegate
 import com.stylingandroid.rialto.RialtoDelegateImpl
+import com.stylingandroid.rialto.RialtoRegistry
 
 class MainActivity : AppCompatActivity(), RialtoDelegate {
     private lateinit var delegate: RialtoDelegate
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity(), RialtoDelegate {
             delegate.processAnnotations(text)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        delegate = RialtoDelegateImpl(this)
+        delegate = RialtoDelegateImpl(this, application as? RialtoRegistry)
 
         super.onCreate(savedInstanceState)
         registerSpanFactory("format", "bold") { StyleSpan(Typeface.BOLD) }

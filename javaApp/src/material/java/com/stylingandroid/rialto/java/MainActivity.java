@@ -27,7 +27,11 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        delegate = new RialtoDelegateImpl(this);
+        RialtoRegistry registry = null;
+        if (getApplication() instanceof RialtoRegistry) {
+            registry = (RialtoRegistry)getApplication();
+        }
+        delegate = new RialtoDelegateImpl(this, registry);
         registerSpanFactory("format", "bold", new Function0<CharacterStyle>() {
             @Override
             public CharacterStyle invoke() {
