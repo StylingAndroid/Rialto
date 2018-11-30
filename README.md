@@ -89,7 +89,7 @@ Note how the attributes of the <code>&lt;annotation ...&gt;</code> elements matc
 
 That's all we need to do, there's no need to manually do any processing, Rialto does it for us:
 
-![Simple Example](./images/simple_example.png | width=400)
+<img src="./images/simple_example.png" width="400" />
 
 It also works for EditText:
 
@@ -129,7 +129,7 @@ It also works for EditText:
 
 This produces the following:
 
-![Edit Example](./images/edit_example.png | width=400)
+<img src="./images/edit_example.png" width="400" />
 
 Of course, you may not always wish to have formatting applied to all of your TextView and EditText instances within the layout. You can disable formatting by setting the annotationFormatting attribute to false:
 
@@ -197,6 +197,6 @@ Using this attribute results in a lint warning, so where we use it we may need t
 
 We can see how we can selectively apply the formatting:
 
-![Disable Example](./images/disable_example.png | width=400)
+<img src="./images/disable_example.png" width="400" />
 
 There's mopre to come in the way of ducumentation, but this should be enough to grasp the basics and get started with Rialto.
