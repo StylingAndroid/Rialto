@@ -5,11 +5,11 @@ import android.text.SpannableStringBuilder
 import android.text.SpannedString
 
 open class RialtoBaseDelegate(
-        private val registry: Registry = Registry()
+        private val registry: RialtoRegistry
 ) : RialtoDelegate {
 
     override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
-        registry.registerFactory(key, value, creator)
+        registry.registerSpanFactory(key, value, creator)
     }
 
     override fun processAnnotations(text: CharSequence?): CharSequence? {

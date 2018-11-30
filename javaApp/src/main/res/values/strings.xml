@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Rialto</string>
-    <string name="main_text">This is a string containing both <annotation format="bold">bold</annotation> and <annotation format="italic">italic</annotation> text</string>
+    <string name="main_text">This is a string containing both <annotation format="bold">bold</annotation>, <annotation format="italic">italic</annotation> and <annotation format="underline">underline</annotation> text</string>
 </resources>

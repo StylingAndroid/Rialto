@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import com.stylingandroid.rialto.RialtoDelegate
 import com.stylingandroid.rialto.RialtoDelegateImpl
+import com.stylingandroid.rialto.RialtoRegistry
 
 open class RialtoActivity : AppCompatActivity(), RialtoDelegate, LifecycleOwner {
 
@@ -18,7 +19,7 @@ open class RialtoActivity : AppCompatActivity(), RialtoDelegate, LifecycleOwner 
             delegate.processAnnotations(text)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        delegate = RialtoDelegateImpl(this)
+        delegate = RialtoDelegateImpl(this, application as? RialtoRegistry)
         super.onCreate(savedInstanceState)
     }
 }

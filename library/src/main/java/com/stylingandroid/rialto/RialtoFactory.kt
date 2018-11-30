@@ -7,7 +7,7 @@ import android.text.SpannedString
 class RialtoFactory(private val registry: Registry = Registry()) {
 
     fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
-        registry.registerFactory(key, value, creator)
+        registry.registerSpanFactory(key, value, creator)
     }
 
     fun processAnnotations(text: CharSequence?): CharSequence? {

@@ -32,7 +32,7 @@ class RialtoFactoryTest {
 
     @Test
     fun `Given a String input When we call processAnnotations() Then the same object is returned`() {
-        val delegate = RialtoBaseDelegate()
+        val delegate = RialtoBaseDelegate(Registry())
         delegate.registerSpanFactory("key", "value") { characterStyle1 }
         val string = "Hello World!"
 
