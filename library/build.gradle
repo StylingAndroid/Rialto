@@ -52,6 +52,9 @@ android {
             res.srcDirs += 'src/commonx/res'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 detekt {
