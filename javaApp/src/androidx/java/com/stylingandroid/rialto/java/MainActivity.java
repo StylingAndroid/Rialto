@@ -8,6 +8,7 @@ import android.text.style.StyleSpan;
 import com.stylingandroid.rialto.RialtoDelegate;
 import com.stylingandroid.rialto.RialtoDelegateImpl;
 
+import com.stylingandroid.rialto.RialtoRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.Nullable;
