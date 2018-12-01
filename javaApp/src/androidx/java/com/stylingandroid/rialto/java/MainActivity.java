@@ -4,16 +4,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.text.style.StyleSpan;
-
-import com.stylingandroid.rialto.RialtoDelegate;
-import com.stylingandroid.rialto.RialtoDelegateImpl;
-
-import com.stylingandroid.rialto.RialtoRegistry;
-import org.jetbrains.annotations.NotNull;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.stylingandroid.rialto.RialtoDelegate;
+import com.stylingandroid.rialto.RialtoDelegateImpl;
 import kotlin.jvm.functions.Function0;
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
@@ -31,11 +27,7 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        RialtoRegistry registry = null;
-        if (getApplication() instanceof RialtoRegistry) {
-            registry = (RialtoRegistry)getApplication();
-        }
-        delegate = new RialtoDelegateImpl(this, registry);
+        delegate = new RialtoDelegateImpl(this);
         registerSpanFactory("format", "bold", new Function0<CharacterStyle>() {
             @Override
             public CharacterStyle invoke() {
