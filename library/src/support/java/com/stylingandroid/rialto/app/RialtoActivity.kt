@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.stylingandroid.rialto.RialtoDelegate
 import com.stylingandroid.rialto.RialtoDelegateImpl
-import com.stylingandroid.rialto.RialtoRegistry
 
 open class RialtoActivity : AppCompatActivity(), RialtoDelegate {
 
@@ -18,7 +17,7 @@ open class RialtoActivity : AppCompatActivity(), RialtoDelegate {
         delegate.processAnnotations(text)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        delegate = RialtoDelegateImpl(this, application as? RialtoRegistry)
+        delegate = RialtoDelegateImpl(this)
 
         super.onCreate(savedInstanceState)
     }

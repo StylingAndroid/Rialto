@@ -4,16 +4,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.text.style.StyleSpan;
-
-import com.stylingandroid.rialto.RialtoDelegate;
-import com.stylingandroid.rialto.RialtoDelegateImpl;
-
-import com.stylingandroid.rialto.RialtoRegistry;
-import org.jetbrains.annotations.NotNull;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.stylingandroid.rialto.RialtoDelegate;
+import com.stylingandroid.rialto.RialtoDelegateImpl;
 import kotlin.jvm.functions.Function0;
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
