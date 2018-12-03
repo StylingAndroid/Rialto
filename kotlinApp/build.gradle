@@ -75,6 +75,7 @@ detekt {
 dependencies {
     implementation libraries.kotlinStdLib
     implementation project(path: ':library')
+    implementation project(path: ':fonts')
     androidxImplementation androidXLibraries.appCompat
     androidxImplementation androidXLibraries.constraintLayout
     supportImplementation supportLibraries.appCompat
