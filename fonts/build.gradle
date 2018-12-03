@@ -1,0 +1,83 @@
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0-RC11"
+    id "com.jfrog.bintray" version "1.8.4" // Enables publishing to bintray
+    id "com.github.dcendents.android-maven" version "1.5" // Allows aar in mavenPublications
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish' // Used for mavenPublications
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode libraryCode
+        versionName libraryVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "libtype"
+
+    productFlavors {
+        support {
+            dimension "libtype"
+        }
+        androidx {
+            dimension "libtype"
+        }
+        material {
+            dimension "libtype"
+        }
+    }
+    sourceSets {
+        androidx {
+            java.srcDirs += 'src/commonx/java'
+            res.srcDirs += 'src/commonx/res'
+        }
+        material {
+            java.srcDirs += 'src/commonx/java'
+            res.srcDirs += 'src/commonx/res'
+        }
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+detekt {
+    version = "1.0.0-RC11"
+    input = files("src/main/java", "src/commonx/java", "src/androidx/java", "src/material/java", "src/support/java")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+}
+
+dependencies {
+    implementation project(path: ':library')
+    implementation libraries.kotlinStdLib
+    implementation libraries.kotlinCoroutinesCore
+    implementation libraries.kotlinCoroutinesAndroid
+
+    androidxImplementation androidXLibraries.appCompat
+    supportImplementation supportLibraries.appCompat
+    materialImplementation 'com.google.android.material:material:1.0.0'
+
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockitoCore
+    testImplementation testLibraries.kotlinTestJunit
+    testImplementation testLibraries.mockitoKotlin
+
+    androidTestImplementation androidTestLibraries.runner
+    androidTestImplementation androidTestLibraries.espressoCore
+}
