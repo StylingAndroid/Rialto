@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         delegate = new RialtoDelegateImpl(this);
+
+        super.onCreate(savedInstanceState);
+
         registerSpanFactory("format", "bold", new Function0<CharacterStyle>() {
             @Override
             public CharacterStyle invoke() {
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
             }
         });
         registerSpanFactory("format", "italic", () -> new StyleSpan(Typeface.ITALIC));
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 }
