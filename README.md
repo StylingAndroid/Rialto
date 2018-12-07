@@ -236,7 +236,7 @@ The other thing worth covering is how to use Rialto in cases where extending <em
 class MainActivity : AppCompatActivity(), RialtoDelegate {
     private lateinit var delegate: RialtoDelegate
 
-    override fun registerSpanFactory(key: String, value: String, creator: () -&gt; Any) {
+    override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
         delegate.registerSpanFactory(key, value, creator)
     }
 
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
     private RialtoDelegate delegate = null;
 
     @Override
-    public void registerSpanFactory(@NotNull String key, @NotNull String value, @NotNull Function0&lt;?&gt; creator) {
+    public void registerSpanFactory(@NotNull String key, @NotNull String value, @NotNull Function0<?> creator) {
         delegate.registerSpanFactory(key, value, creator);
     }
 
@@ -280,13 +280,13 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
         super.onCreate(savedInstanceState);
 
-        registerSpanFactory("format", "bold", new Function0&lt;CharacterStyle&gt;() {
+        registerSpanFactory("format", "bold", new Function0<CharacterStyle>() {
             @Override
             public CharacterStyle invoke() {
                 return new StyleSpan(Typeface.BOLD);
             }
         });
-        registerSpanFactory("format", "italic", () -&gt; new StyleSpan(Typeface.ITALIC));
+        registerSpanFactory("format", "italic", () -> new StyleSpan(Typeface.ITALIC));
         setContentView(R.layout.activity_main);
     }
 }
@@ -300,7 +300,7 @@ If you are using Java 7 then you will need to create a Function0 instance as the
 
 
 ```java
-registerSpanFactory("format", "bold", new Function0&amp;lt;CharacterStyle&amp;gt;() {
+registerSpanFactory("format", "bold", new Function0<CharacterStyle>() {
     @Override
     public CharacterStyle invoke() {
         return new StyleSpan(Typeface.BOLD);
@@ -312,7 +312,7 @@ registerSpanFactory("format", "bold", new Function0&amp;lt;CharacterStyle&amp;gt
 However if you are using Java 8 (or Retrolambda) then you can use a lambda instead:
 
 ```java
-registerSpanFactory("format", "italic", () -&gt; new StyleSpan(Typeface.ITALIC));
+registerSpanFactory("format", "italic", () -> new StyleSpan(Typeface.ITALIC));
 ```
 
 The second thing that you will need to do is add the Kotlin standard library as a dependency to your project:
