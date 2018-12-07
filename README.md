@@ -330,6 +330,6 @@ Rialto is written 100% in Kotlin, but can be used quite easily from Java. The on
 
 #### Internals
 
-One final thing worth noting is that when Rialto does its stuff, it adds spans to the string resource, but does not remove the annotation spans as it goes. The reasoning behind this is that some use-cases may require some further processing of those annotations, and removing them would prevent this. Also, it is worth remembering that on a <em>Spanned</em> instance the individual Span objects are relatively small, so keeping the Annotation instances is going to be a major memory issue.
+One final thing worth noting is that when Rialto does its stuff, it adds spans to the string resource, but does not remove the annotation spans as it goes. The reasoning behind this is that some use-cases may require some further processing of those annotations, and removing them would prevent this. Also, it is worth remembering that on a <em>Spanned</em> instance the individual Span objects are relatively small, so keeping the Annotation instances is not going to be a major memory issue.
 
 Rialto is really quite simple to use and the API surface is really quite small. Internally it isn't a particularly large or complex library, it's power is based upon creating the registry of span factories which apply the relevant spans whenever specific annotations are encountered.
