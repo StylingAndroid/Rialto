@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.stylingandroid.rialto.kotlin.MainActivity">
+  tools:context="com.stylingandroid.rialto.app.MainActivity">
 
   <TextView
     android:id="@+id/formatted_text_view"

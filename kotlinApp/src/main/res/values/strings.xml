@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">Rialto</string>
-    <string name="main_text">This is a string containing both <annotation format="bold">bold</annotation>, <annotation format="bold_underline">underlined bold</annotation> and <annotation format="italic">italic</annotation> text</string>
 </resources>
