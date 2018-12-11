@@ -3,7 +3,7 @@ ext {
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
 
-    androidBuildToolsVersion = '3.4.0-alpha06'
+    androidBuildToolsVersion = '3.4.0-alpha07'
 
     supportLibraryVersion = '28.0.0'
     androidXLibraryVersion = '1.0.2'
@@ -15,10 +15,14 @@ ext {
     junit4Version = '4.12'
     mockitoVersion = '2.23.0'
     mockitoKotlinVersion = '2.0.0'
+    robolectricVersion = '4.0.2'
 
-    runnerVersion = '1.0.2'
-    espressoVersion = '3.0.2'
-    espressoRulesVersion = '1.0.1'
+    androidXRunnerVersion = '1.0.0'
+    androidXEspressoVersion = '3.1.0'
+    androidXEspressoRulesVersion = '1.1.0'
+    supportRunnerVersion = '1.0.2'
+    supportEspressoVersion = '3.0.2'
+    supportEspressoRulesVersion = '1.0.1'
 
     buildPlugins = [
             androidGradlePlugin: "com.android.tools.build:gradle:$androidBuildToolsVersion",
@@ -43,15 +47,16 @@ ext {
     ]
 
     testLibraries = [
-            junit4         : "junit:junit:$junit4Version",
-            mockitoCore    : "org.mockito:mockito-core:$mockitoVersion",
-            kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
-            mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
-    ]
-
-    androidTestLibraries = [
-            runner       : "com.android.support.test:runner:$runnerVersion",
-            espressoCore : "com.android.support.test.espresso:espresso-core:$espressoVersion",
-            espressoRules: "com.android.support.test:rules:$espressoRulesVersion"
+            junit4               : "junit:junit:$junit4Version",
+            mockitoCore          : "org.mockito:mockito-core:$mockitoVersion",
+            kotlinTestJunit      : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            mockitoKotlin        : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            robolectric          : "org.robolectric:robolectric:$robolectricVersion",
+            androidXRunner       : "androidx.test.ext:junit:$androidXRunnerVersion",
+            androidXEspressoCore : "androidx.test.espresso:espresso-core:$androidXEspressoVersion",
+            androidXEspressoRules: "androidx.test:rules:$androidXEspressoRulesVersion",
+            supportRunner        : "com.android.support.test:runner:$supportRunnerVersion",
+            supportEspressoCore  : "com.android.support.test.espresso:espresso-core:$supportEspressoVersion",
+            supportEspressoRules : "com.android.support.test:rules:$supportEspressoRulesVersion"
     ]
 }

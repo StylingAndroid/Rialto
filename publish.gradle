@@ -135,7 +135,7 @@ afterEvaluate {
         user = properties.getProperty("bintray.user")
         key = properties.getProperty("bintray.apikey")
         publications = publicationNames
-        dryRun = true
+        dryRun = false
 
         override = true
         pkg {
