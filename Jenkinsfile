@@ -4,7 +4,19 @@ node {
   }
 
   stage('Build') {
-        sh "./gradlew clean assemble test check detekt"
+        sh "./gradlew clean assemble"
+  }
+
+  stage('Test') {
+        sh "./gradlew test"
+  }
+
+  stage('Check') {
+        sh "./gradlew check"
+  }
+
+  stage('Detekt') {
+        sh "./gradlew detekt"
   }
 
   stage('Report') {
