@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder
 import android.text.SpannedString
 import java.util.regex.Pattern
 
-fun Resources.getText(id: String, vararg formatArgs: Any): CharSequence {
+fun Resources.getFormattedText(id: Int, vararg formatArgs: Any): CharSequence {
     val text = getText(id)
     return if (text is SpannedString) {
         @Suppress("SpreadOperator") // really need to use the spread operator here for Java interoperability

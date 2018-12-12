@@ -4,8 +4,11 @@ import android.text.style.StyleSpan
 import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 
-fun withSpan(range: ClosedRange<Int>, type: SpanTypeMatcher<*>) =
-    SpanMatcher(range, type)
+fun withSpan(type: SpanTypeMatcher<*>) =
+    SpanMatcher(type)
+
+fun withSpan(type: SpanTypeMatcher<*>, range: ClosedRange<Int>) =
+    SpanMatcher(type, range)
 
 fun withStyle(style: Int) = StyleSpanMatcher(style)
 
@@ -29,3 +32,6 @@ open class SpanTypeMatcher<T>(val classType: Class<*>) : BaseMatcher<T>() {
 
     override fun matches(item: Any?): Boolean = classType.isInstance(item)
 }
+
+fun setText(charSequence: CharSequence) =
+    SetTextAction(charSequence)
