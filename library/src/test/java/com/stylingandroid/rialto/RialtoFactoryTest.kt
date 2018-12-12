@@ -7,11 +7,13 @@ import android.text.style.CharacterStyle
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import org.junit.Ignore
 import org.junit.Test
 import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyInt
 import kotlin.test.assertSame
 
+@Ignore
 class RialtoFactoryTest {
 
     private val characterStyle1: CharacterStyle = mock()
