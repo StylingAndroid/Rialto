@@ -2,7 +2,7 @@ package com.stylingandroid.rialto
 
 import android.text.Annotation
 import android.text.SpannableStringBuilder
-import android.text.SpannedString
+import android.text.Spanned
 
 open class RialtoBaseDelegate(val registry: RialtoRegistry) : RialtoDelegate {
 
@@ -11,7 +11,7 @@ open class RialtoBaseDelegate(val registry: RialtoRegistry) : RialtoDelegate {
     }
 
     override fun processAnnotations(text: CharSequence?): CharSequence? {
-        return if (text is SpannedString) {
+        return if (text is Spanned) {
             processAnnotations(text, SpannableStringBuilder(text))
         } else {
             text
@@ -19,7 +19,7 @@ open class RialtoBaseDelegate(val registry: RialtoRegistry) : RialtoDelegate {
     }
 
     internal fun processAnnotations(
-            spannedString: SpannedString,
+            spannedString: Spanned,
             spannableStringBuilder: SpannableStringBuilder
     ): CharSequence {
         spannedString.getSpans(0, spannedString.length, Annotation::class.java)
@@ -35,6 +35,6 @@ open class RialtoBaseDelegate(val registry: RialtoRegistry) : RialtoDelegate {
 
     private fun Annotation.applySpan(start: Int, end: Int, spannableStringBuilder: SpannableStringBuilder) =
             registry[key, value].forEach { factory ->
-                spannableStringBuilder.setSpan(factory.invoke(), start, end, SpannedString.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableStringBuilder.setSpan(factory.invoke(), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             }
 }
