@@ -23,7 +23,9 @@ class SpanMatcher(
 
     override fun matchesSafely(item: TextView): Boolean {
         (item.text as? Spanned)?.also { spanned ->
+            println("$spanned: ${type.classType.simpleName}")
             spanned.getSpans(0, spanned.length, type.classType).forEach { span ->
+                println("$spanned: ${spanned.getSpanStart(span)}..${spanned.getSpanEnd(span)} ${span.javaClass.simpleName}")
                 range?.also {
                     if (spanned.getSpanStart(span) == range.start && spanned.getSpanEnd(span) == range.endInclusive + 1) {
                         return type.matches(span)

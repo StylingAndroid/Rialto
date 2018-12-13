@@ -5,15 +5,13 @@ import android.support.v7.appcompat.R
 import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
 import android.widget.TextView
-import com.stylingandroid.rialto.CoroutineScopeConsumer
 import com.stylingandroid.rialto.TextViewDelegate
-import kotlinx.coroutines.CoroutineScope
 
 class RialtoEditText @JvmOverloads constructor(
     context: Context,
     private val attrs: AttributeSet? = null,
     defaultStyle: Int = R.attr.editTextStyle
-) : AppCompatEditText(context, attrs, defaultStyle), CoroutineScopeConsumer {
+) : AppCompatEditText(context, attrs, defaultStyle) {
 
     private lateinit var delegate: TextViewDelegate
 
@@ -25,13 +23,9 @@ class RialtoEditText @JvmOverloads constructor(
             delegate.doFormatting = value
         }
 
-    override fun setCoroutineScope(coroutineScope: CoroutineScope) {
-        initialiseDelegate(coroutineScope)
-    }
-
-    private fun initialiseDelegate(coroutineScope: CoroutineScope) {
+    fun initialiseDelegate() {
         attrs?.also {
-            delegate = TextViewDelegate(context, it, this, coroutineScope)
+            delegate = TextViewDelegate(context, it, this)
             deferredText?.also { (text, type) ->
                 setText(text, type)
             }

@@ -1,4 +1,5 @@
 <resources>
     <string name="main_text">This is a string containing both <annotation format="bold">bold</annotation>, <annotation format="underline">underlined</annotation>, <annotation format="bold_underline">underlined bold</annotation>, and <annotation format="italic">italic</annotation> text</string>
-    <string name="formatted">This is a <annotation format="bold">%1$s</annotation> string</string>
+    <string name="formatted_bold">This is a <annotation format="bold">%1$s</annotation> string</string>
+    <string name="formatted_italic">This is a <annotation format="italic">%1$s</annotation> string</string>
 </resources>

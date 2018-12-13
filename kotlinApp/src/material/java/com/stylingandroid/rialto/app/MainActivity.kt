@@ -4,9 +4,12 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.stylingandroid.rialto.RialtoDelegate
 import com.stylingandroid.rialto.RialtoDelegateImpl
+import com.stylingandroid.rialto.format.getFormattedText
+import kotlinx.android.synthetic.material.activity_main.*
 
 class MainActivity : AppCompatActivity(), RialtoDelegate {
     private lateinit var delegate: RialtoDelegate
@@ -27,5 +30,10 @@ class MainActivity : AppCompatActivity(), RialtoDelegate {
         registerSpanFactory("format", "bold_underline") { StyleSpan(Typeface.BOLD) }
         registerSpanFactory("format", "bold_underline") { UnderlineSpan() }
         setContentView(R.layout.activity_main)
+
+        format_string.setText(
+                resources.getFormattedText(R.string.formatted_italic, "formatted"),
+                TextView.BufferType.SPANNABLE
+        )
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
-import com.stylingandroid.rialto.CoroutineScopeConsumer
 import com.stylingandroid.rialto.RialtoTextDelegate
 import com.stylingandroid.rialto.TextViewDelegate
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +12,7 @@ class RialtoTextInputEditText @JvmOverloads constructor(
         context: Context,
         private val attrs: AttributeSet? = null,
         defaultStyle: Int = 0
-) : TextInputEditText(context, attrs, defaultStyle), CoroutineScopeConsumer {
+) : TextInputEditText(context, attrs, defaultStyle) {
     private lateinit var delegate: RialtoTextDelegate
 
     private var deferredText: Pair<CharSequence, TextView.BufferType>? = null
@@ -24,13 +23,9 @@ class RialtoTextInputEditText @JvmOverloads constructor(
             delegate.doFormatting = value
         }
 
-    override fun setCoroutineScope(coroutineScope: CoroutineScope) {
-        initialiseDelegate(coroutineScope)
-    }
-
-    private fun initialiseDelegate(coroutineScope: CoroutineScope) {
+    private fun initialiseDelegate() {
         attrs?.also {
-            delegate = TextViewDelegate(context, it, this, coroutineScope)
+            delegate = TextViewDelegate(context, it, this)
             deferredText?.also { (text, type) ->
                 setText(text, type)
             }

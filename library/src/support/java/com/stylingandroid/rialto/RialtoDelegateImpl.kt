@@ -10,7 +10,7 @@ class RialtoDelegateImpl(activity: AppCompatActivity) : RialtoBaseDelegate(
 ) {
 
     init {
-        LayoutInflaterCompat.setFactory2(activity.layoutInflater, ViewFactory(activity as LifecycleOwner) { context ->
+        LayoutInflaterCompat.setFactory2(activity.layoutInflater, ViewFactory { context ->
             RialtoFactoryContext(context, this)
         })
     }

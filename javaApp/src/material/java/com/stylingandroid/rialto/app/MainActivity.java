@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
+
 import com.stylingandroid.rialto.RialtoDelegate;
 import com.stylingandroid.rialto.RialtoDelegateImpl;
-import kotlin.jvm.functions.Function0;
+import com.stylingandroid.rialto.format.SpannableFormatterKt;
+
 import org.jetbrains.annotations.NotNull;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import kotlin.jvm.functions.Function0;
 
 public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
@@ -40,5 +45,14 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
         registerSpanFactory("format", "bold_underline", UnderlineSpan::new);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textView = findViewById(R.id.format_string);
+        textView.setText(
+                SpannableFormatterKt.getFormattedText(
+                        getResources(),
+                        R.string.formatted_italic, "formatted"
+                ),
+                TextView.BufferType.SPANNABLE
+        );
     }
 }

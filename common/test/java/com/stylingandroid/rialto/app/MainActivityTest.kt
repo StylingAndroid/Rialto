@@ -5,7 +5,6 @@ import android.text.style.UnderlineSpan
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.stylingandroid.rialto.format.getFormattedText
@@ -135,17 +134,22 @@ class MainActivityTest {
     }
 
     @Test
-    fun `Given an inflated layout When we set text on formatted_text_view using a formatted string Then a bold span is added`() {
-        val newText = rule.activity.resources.getFormattedText(R.string.formatted, "formatted")
-        onView(withId(R.id.formatted_text_view))
-            .perform(setText(newText))
-            .check(matches(withText(newText.toString())))
-            .check(matches(withSpan(withStyle(Typeface.BOLD), 10..18)))
+    fun `Given an inflated layout When we set text on formatted_text_view using a formatted string Then an italic span is added`() {
+        onView(withId(R.id.format_string))
+                .check(matches(withSpan(withStyle(Typeface.ITALIC), 10..18)))
+    }
+
+    @Test
+    fun `Given an inflated layout When we set text on formatted_text_view using a different formatted string Then a bold span is added`() {
+        val newText = rule.activity.resources.getFormattedText(R.string.formatted_bold, "formatted")
+        onView(withId(R.id.format_string))
+                .perform(setText(newText))
+                .check(matches(withSpan(withStyle(Typeface.BOLD), 10..18)))
     }
 
     @Test
     fun `Given an inflated layout When we set text on unformatted_text_view using a formatted string Then a bold span is not added`() {
-        val newText = rule.activity.resources.getFormattedText(R.string.formatted, "formatted")
+        val newText = rule.activity.resources.getFormattedText(R.string.formatted_bold, "formatted")
         onView(withId(R.id.unformatted_text_view))
             .perform(setText(newText))
             .check(matches(not(withSpan(withStyle(Typeface.BOLD)))))
