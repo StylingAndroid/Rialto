@@ -28,12 +28,6 @@ public class MainActivity extends RialtoActivity {
         setContentView(R.layout.activity_main);
 
         TextView textView = findViewById(R.id.format_string);
-        textView.setText(
-                SpannableFormatterKt.getFormattedText(
-                        getResources(),
-                        R.string.formatted_italic, "formatted"
-                ),
-                TextView.BufferType.SPANNABLE
-        );
+        textView.setText(SpannableFormatterKt.getFormattedText(getResources(), R.string.formatted_italic, "formatted"));
     }
 }
