@@ -9,7 +9,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.stylingandroid.rialto.kotlin"
+        applicationId "com.stylingandroid.rialto.app"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -38,6 +38,20 @@ android {
             applicationIdSuffix ".material"
         }
     }
+    sourceSets {
+        androidx.res.srcDirs += '../common/res'
+        material.res.srcDirs += '../common/res'
+        support.res.srcDirs += '../common/res'
+        testAndroidx {
+            java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+        }
+        testMaterial {
+            java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+        }
+        testSupport {
+            java.srcDirs += ['../common/testSupport/java', "../common/test/java"]
+        }
+    }
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
@@ -47,6 +61,9 @@ android {
 
     useLibrary 'android.test.base'
     useLibrary 'android.test.mock'
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
 }
 
 detekt {
@@ -68,5 +85,13 @@ dependencies {
 //    androidTestImplementation androidTestLibraries.runner
 //    androidTestImplementation androidTestLibraries.espressoCore
 //    androidTestImplementation androidTestLibraries.espressoRules
-    androidTestImplementation 'com.agoda.kakao:kakao:1.0.0'
+//    androidTestImplementation 'com.agoda.kakao:kakao:1.0.0'
+    testImplementation testLibraries.robolectric
+    testImplementation testLibraries.androidXRunner
+    testImplementation testLibraries.androidXEspressoCore
+    testImplementation testLibraries.androidXEspressoRules
+    testImplementation testLibraries.supportRunner
+    testImplementation testLibraries.supportEspressoCore
+    testImplementation testLibraries.supportEspressoRules
+    //testImplementation 'com.agoda.kakao:kakao:1.0.0'
 }

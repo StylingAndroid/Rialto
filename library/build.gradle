@@ -53,7 +53,8 @@ android {
         }
     }
     testOptions {
-        unitTests.returnDefaultValues = true
+        //unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
     }
 }
 
@@ -76,9 +77,7 @@ dependencies {
     testImplementation testLibraries.mockitoCore
     testImplementation testLibraries.kotlinTestJunit
     testImplementation testLibraries.mockitoKotlin
-
-    androidTestImplementation androidTestLibraries.runner
-    androidTestImplementation androidTestLibraries.espressoCore
+    testImplementation testLibraries.robolectric
 }
 
 apply from: '../publish.gradle' // Makes this library publishable

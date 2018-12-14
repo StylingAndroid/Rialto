@@ -4,16 +4,11 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.util.AttributeSet
 import android.widget.TextView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 internal class TextViewDelegate(
         context: Context,
         attrs: AttributeSet,
         private val textView: TextView,
-        private val coroutineScope: CoroutineScope,
         override var doFormatting: Boolean = true
 ) : RialtoTextDelegate {
 
@@ -47,13 +42,10 @@ internal class TextViewDelegate(
         }
 
         if (doFormatting) {
-            coroutineScope.launch {
-                val processedText: CharSequence? = withContext(Default) {
-                    delegate?.processAnnotations(text) ?: text
-                }
-
+            delegate?.processAnnotations(text)?.also { processedText ->
                 setter(processedText, type)
             }
+
         }
     }
 }

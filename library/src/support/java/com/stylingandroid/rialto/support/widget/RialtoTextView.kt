@@ -4,15 +4,13 @@ import android.content.Context
 import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.widget.TextView
-import com.stylingandroid.rialto.CoroutineScopeConsumer
 import com.stylingandroid.rialto.TextViewDelegate
-import kotlinx.coroutines.CoroutineScope
 
 class RialtoTextView @JvmOverloads constructor(
     context: Context,
     private val attrs: AttributeSet? = null,
     defaultStyle: Int = 0
-) : AppCompatTextView(context, attrs, defaultStyle), CoroutineScopeConsumer {
+) : AppCompatTextView(context, attrs, defaultStyle) {
 
     private lateinit var delegate: TextViewDelegate
 
@@ -24,13 +22,9 @@ class RialtoTextView @JvmOverloads constructor(
             delegate.doFormatting = value
         }
 
-    override fun setCoroutineScope(coroutineScope: CoroutineScope) {
-        initialiseDelegate(coroutineScope)
-    }
-
-    private fun initialiseDelegate(coroutineScope: CoroutineScope) {
+    fun initialiseDelegate() {
         attrs?.also {
-            delegate = TextViewDelegate(context, it, this, coroutineScope)
+            delegate = TextViewDelegate(context, it, this)
             deferredText?.also { (text, type) ->
                 setText(text, type)
             }

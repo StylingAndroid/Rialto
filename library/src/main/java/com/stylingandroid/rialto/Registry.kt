@@ -5,7 +5,7 @@ typealias FactorySet = Set<Factory>
 
 class Registry constructor(
     private val collection: MutableMap<String, MutableMap<String, MutableSet<Factory>>> = mutableMapOf()
-) {
+) : RialtoRegistry {
 
     constructor(
         parent: Registry,
@@ -17,16 +17,16 @@ class Registry constructor(
     private val emptyValueMap = emptyMap<String, FactorySet>()
     private val emptyFactorySet = emptySet<Factory>()
 
-    operator fun get(key: String, value: String) : FactorySet =
+    override operator fun get(key: String, value: String) : FactorySet =
         (collection[key] ?: emptyValueMap)[value] ?: emptyFactorySet
 
 
-    fun registerFactory(key: String, value: String, factory: () -> Any) {
+    override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
         (collection[key] ?: let {
             mutableMapOf<String, MutableSet<Factory>>().also { values ->
                 collection[key] = values
             }
-        }).registerFactory(value, factory)
+        }).registerFactory(value, creator)
     }
 
     private fun MutableMap<String, MutableSet<Factory>>.registerFactory(value: String, factory: () -> Any) {
@@ -40,4 +40,7 @@ class Registry constructor(
     private fun MutableSet<Factory>.registerFactory(factory: () -> Any) {
         add(factory)
     }
+
+    override fun copy(): RialtoRegistry =
+            Registry(collection.toMutableMap())
 }

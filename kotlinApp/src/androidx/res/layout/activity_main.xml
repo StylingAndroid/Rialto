@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.stylingandroid.rialto.kotlin.MainActivity">
+  tools:context="com.stylingandroid.rialto.app.MainActivity">
 
   <TextView
     android:id="@+id/formatted_text_view"
@@ -50,10 +50,20 @@
     android:inputType="text"
     android:text="@string/main_text"
     app:annotationFormatting="false"
-    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/format_string"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/unformatted_text_view"
     tools:ignore="missingPrefix" />
+
+  <TextView
+    android:id="@+id/format_string"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/unformatted_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
