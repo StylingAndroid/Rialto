@@ -34,7 +34,7 @@ The first thing to do is to add the necessary dependency to your project:
 ```groovy
 dependencies {
     ...
-    implementation 'com.stylingandroid.rialto:rialto-androidx:1.0.0'
+    implementation 'com.stylingandroid.rialto:rialto-androidx:1.1.0'
     ...
 }
 ```
