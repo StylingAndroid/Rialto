@@ -15,10 +15,14 @@ class FontRegistrar @JvmOverloads constructor(
         resources.getStringArray(preloadedFonts)
             .map { it.removePrefix("res/font/").removeSuffix(".xml") }
             .forEach { fontName ->
-                ResourcesCompat.getFont(
-                    context,
-                    resources.getIdentifier(fontName, "font", context.packageName)
-                )?.also { typeface ->
+                try {
+                    ResourcesCompat.getFont(
+                        context,
+                        resources.getIdentifier(fontName, "font", context.packageName)
+                    )
+                } catch (e: Resources.NotFoundException) {
+                    null
+                }?.also { typeface ->
                     registry.registerSpanFactory(key, fontName) {
                         CustomTypefaceSpan(typeface)
                     }
