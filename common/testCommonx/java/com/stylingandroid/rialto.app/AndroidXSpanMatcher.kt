@@ -1,13 +1,18 @@
 package com.stylingandroid.rialto.app
 
+import android.content.Context
+import android.graphics.Typeface
 import android.text.Spanned
+import android.text.style.TypefaceSpan
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import com.stylingandroid.rialto.androidx.widget.RialtoTextView
+import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
@@ -46,5 +51,18 @@ class SetTextAction(private val charSequence: CharSequence) : ViewAction {
 
     override fun perform(uiController: UiController?, view: View?) {
         (view as? RialtoTextView)?.setText(charSequence, TextView.BufferType.SPANNABLE)
+    }
+}
+
+class TypefaceSpanMatcher(private val context: Context, private val typefaceName: String) : BaseMatcher<TypefaceSpan>() {
+    override fun describeTo(description: Description?) {
+        description?.appendText("typeface name:")?.appendValue(typefaceName)
+    }
+
+    override fun matches(item: Any?): Boolean {
+        val expected: Typeface? = context.resources.getIdentifier("font", typefaceName, context.packageName).let { id ->
+            ResourcesCompat.getFont(context, id)
+        }
+        return (item as? TypefaceSpan)?.typeface?.equals(expected) ?: false
     }
 }

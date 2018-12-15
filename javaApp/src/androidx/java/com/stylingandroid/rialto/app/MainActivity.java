@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.stylingandroid.rialto.RialtoDelegate;
 import com.stylingandroid.rialto.RialtoDelegateImpl;
+import com.stylingandroid.rialto.RialtoRegistry;
 import com.stylingandroid.rialto.format.SpannableFormatterKt;
 
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import kotlin.jvm.functions.Function0;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements RialtoDelegate {
 
@@ -29,6 +32,18 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
     @Override
     public CharSequence processAnnotations(CharSequence text) {
         return delegate.processAnnotations(text);
+    }
+
+    @NotNull
+    @Override
+    public Set<Function0<Object>> get(@NotNull String key, @NotNull String value) {
+        return delegate.get(key, value);
+    }
+
+    @NotNull
+    @Override
+    public RialtoRegistry copy() {
+        return delegate.copy();
     }
 
     @Override
@@ -51,4 +66,5 @@ public class MainActivity extends AppCompatActivity implements RialtoDelegate {
         TextView textView = findViewById(R.id.format_string);
         textView.setText(SpannableFormatterKt.getFormattedText(getResources(), R.string.formatted_italic, "formatted"));
     }
+
 }

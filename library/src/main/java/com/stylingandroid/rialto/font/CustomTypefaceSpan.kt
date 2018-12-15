@@ -1,10 +1,10 @@
-package com.stylingandroid.rialto.fonts
+package com.stylingandroid.rialto.font
 
 import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 
-internal class CustomTypefaceSpan(private val font: Typeface?) : MetricAffectingSpan() {
+class CustomTypefaceSpan(private val font: Typeface?) : MetricAffectingSpan() {
 
     override fun updateMeasureState(textPaint: TextPaint) = update(textPaint)
 

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.appcompat.app.AppCompatActivity
+import com.stylingandroid.rialto.FactorySet
 import com.stylingandroid.rialto.RialtoDelegate
 import com.stylingandroid.rialto.RialtoDelegateImpl
+import com.stylingandroid.rialto.RialtoRegistry
 import com.stylingandroid.rialto.format.getFormattedText
 import kotlinx.android.synthetic.material.activity_main.*
 
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity(), RialtoDelegate {
 
     override fun processAnnotations(text: CharSequence?): CharSequence? =
             delegate.processAnnotations(text)
+
+    override fun get(key: String, value: String): FactorySet = delegate.get(key, value)
+
+    override fun copy(): RialtoRegistry = delegate.copy()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         delegate = RialtoDelegateImpl(this)
