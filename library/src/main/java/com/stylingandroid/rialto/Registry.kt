@@ -18,21 +18,21 @@ class Registry constructor(
     private val emptyFactorySet = emptySet<Factory>()
 
     override operator fun get(key: String, value: String) : FactorySet =
-        (collection[key] ?: emptyValueMap)[value] ?: emptyFactorySet
+        (collection[key.toLowerCase()] ?: emptyValueMap)[value.toLowerCase()] ?: emptyFactorySet
 
 
     override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
-        (collection[key] ?: let {
+        (collection[key.toLowerCase()] ?: let {
             mutableMapOf<String, MutableSet<Factory>>().also { values ->
-                collection[key] = values
+                collection[key.toLowerCase()] = values
             }
         }).registerFactory(value, creator)
     }
 
     private fun MutableMap<String, MutableSet<Factory>>.registerFactory(value: String, factory: () -> Any) {
-        (this[value] ?: let {
+        (this[value.toLowerCase()] ?: let {
             mutableSetOf<() -> Any>().also { factories ->
-                this[value] = factories
+                this[value.toLowerCase()] = factories
             }
         }).registerFactory(factory)
     }
