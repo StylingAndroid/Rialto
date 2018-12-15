@@ -1,6 +1,5 @@
 package com.stylingandroid.rialto
 
-import android.arch.lifecycle.LifecycleOwner
 import android.support.v4.view.LayoutInflaterCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.ViewFactory

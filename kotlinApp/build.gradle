@@ -44,12 +44,15 @@ android {
         support.res.srcDirs += '../common/res'
         testAndroidx {
             java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+            resources.srcDir '../common/testCommonx/resources'
         }
         testMaterial {
             java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+            resources.srcDir '../common/testCommonx/resources'
         }
         testSupport {
             java.srcDirs += ['../common/testSupport/java', "../common/test/java"]
+            resources.srcDir '../common/testSupport/resources'
         }
     }
     compileOptions {
@@ -75,7 +78,6 @@ detekt {
 dependencies {
     implementation libraries.kotlinStdLib
     implementation project(path: ':library')
-    implementation project(path: ':fonts')
     androidxImplementation androidXLibraries.appCompat
     androidxImplementation androidXLibraries.constraintLayout
     supportImplementation supportLibraries.appCompat
@@ -83,10 +85,6 @@ dependencies {
     materialImplementation libraries.material
     materialImplementation androidXLibraries.constraintLayout
     testImplementation testLibraries.junit4
-//    androidTestImplementation androidTestLibraries.runner
-//    androidTestImplementation androidTestLibraries.espressoCore
-//    androidTestImplementation androidTestLibraries.espressoRules
-//    androidTestImplementation 'com.agoda.kakao:kakao:1.0.0'
     testImplementation testLibraries.robolectric
     testImplementation testLibraries.androidXRunner
     testImplementation testLibraries.androidXEspressoCore
@@ -94,5 +92,4 @@ dependencies {
     testImplementation testLibraries.supportRunner
     testImplementation testLibraries.supportEspressoCore
     testImplementation testLibraries.supportEspressoRules
-    //testImplementation 'com.agoda.kakao:kakao:1.0.0'
 }

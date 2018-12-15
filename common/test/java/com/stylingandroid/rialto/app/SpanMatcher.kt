@@ -1,6 +1,7 @@
 package com.stylingandroid.rialto.app
 
 import android.text.style.StyleSpan
+import com.stylingandroid.rialto.font.CustomTypefaceSpan
 import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 
@@ -35,3 +36,6 @@ open class SpanTypeMatcher<T>(val classType: Class<*>) : BaseMatcher<T>() {
 
 fun setText(charSequence: CharSequence) =
     SetTextAction(charSequence)
+
+
+fun withTypeface() = SpanTypeMatcher<CustomTypefaceSpan>(CustomTypefaceSpan::class.java)

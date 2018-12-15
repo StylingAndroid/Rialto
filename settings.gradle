@@ -1,1 +1,1 @@
-include ':kotlinApp', ':library', ':javaApp', ':fonts'
+include ':kotlinApp', ':library', ':javaApp'

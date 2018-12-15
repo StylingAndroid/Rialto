@@ -55,6 +55,20 @@ class MainActivityTest {
     }
 
     @Test
+    fun `Given an inflated layout When we use default values Then a pacifico typeface span surrounds the pacifico text of formatted_text_view`() {
+        onView(withId(R.id.formatted_text_view)).check(
+            matches(withSpan(withTypeface(), 89..91))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a audiowide typeface span surrounds the audiowide text of formatted_text_view`() {
+        onView(withId(R.id.formatted_text_view)).check(
+            matches(withSpan(withTypeface(), 93..101))
+        )
+    }
+
+    @Test
     fun `Given an inflated layout When we use default values Then a bold span surrounds the bold text of formatted_edit_text`() {
         onView(withId(R.id.formatted_edit_text)).check(
             matches(withSpan(withStyle(Typeface.BOLD), 33..36))
@@ -80,6 +94,20 @@ class MainActivityTest {
     fun `Given an inflated layout When we use default values Then a bold span surrounds the bold underline text of formatted_edit_text`() {
         onView(withId(R.id.formatted_edit_text)).check(
             matches(withSpan(withStyle(Typeface.BOLD), 51..65))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a pacifico typeface span surrounds the pacifico text of formatted_edit_text`() {
+        onView(withId(R.id.formatted_edit_text)).check(
+            matches(withSpan(withTypeface(), 89..91))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a audiowide typeface span surrounds the audiowide text of formatted_edit_text`() {
+        onView(withId(R.id.formatted_edit_text)).check(
+            matches(withSpan(withTypeface(), 93..101))
         )
     }
 
@@ -111,6 +139,19 @@ class MainActivityTest {
         )
     }
 
+    @Test
+    fun `Given an inflated layout When we use default values Then a pacifico typeface span surrounds the pacifico text of unformatted_text_view`() {
+        onView(withId(R.id.unformatted_text_view)).check(
+            matches(not(withSpan(withTypeface(), 89..91)))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a audiowide typeface span surrounds the audiowide text of unformatted_text_view`() {
+        onView(withId(R.id.unformatted_text_view)).check(
+            matches(not(withSpan(withTypeface(), 93..101)))
+        )
+    }
 
     @Test
     fun `Given an inflated layout When we use default values Then a bold span does not get added to the text of unformatted_edit_text`() {
@@ -130,6 +171,20 @@ class MainActivityTest {
     fun `Given an inflated layout When we use default values Then a underline span does not get added to the text of unformatted_edit_text`() {
         onView(withId(R.id.unformatted_edit_text)).check(
             matches(not(withSpan(withType(UnderlineSpan::class.java))))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a pacifico typeface span surrounds the pacifico text of unformatted_edit_text`() {
+        onView(withId(R.id.unformatted_edit_text)).check(
+            matches(not(withSpan(withTypeface(), 89..91)))
+        )
+    }
+
+    @Test
+    fun `Given an inflated layout When we use default values Then a audiowide typeface span surrounds the audiowide text of unformatted_edit_text`() {
+        onView(withId(R.id.unformatted_edit_text)).check(
+            matches(not(withSpan(withTypeface(), 93..101)))
         )
     }
 
