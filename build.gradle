@@ -21,8 +21,8 @@ allprojects {
     }
     ext {
         groupId = "com.stylingandroid.rialto"
-        libraryVersion = "1.1.0"
-        libraryCode = 110
+        libraryVersion = "1.1.1"
+        libraryCode = 111
         siteUrl = 'https://github.com/StylingAndroid/Rialto'
         gitUrl = 'https://github.com/StylingAndroid/Rialto.git'
     }
