@@ -9,6 +9,7 @@ formatting throughout your app by using annotations in your string resources.
 * [Combining Spans](#combining-spans)
 * [Cascading Registry](#cascading-registry)
 * [Format Strings](#format-strings)
+* [Downloadable Fonts](#downloadable-fonts)
 * [Java Interoperability](#java-interoperability)
 * [Internals](#internals)
 
@@ -333,6 +334,56 @@ The annotation span will remain, and will have expanded so that it now surrounds
 <a href="https://blog.stylingandroid.com/wp-content/uploads/2018/12/format_string_edit.png"><img src="https://blog.stylingandroid.com/wp-content/uploads/2018/12/format_string_edit-1024x177.png" alt="" width="720" height="124" class="alignnone size-large wp-image-5749" /></a>
 
 One limitation here is that annotations are only supported on the string resource itself. In other words they can be used in the string resource referenced by the first argument, but they cannot be used within any of the varargs parameters. Despite this limitation, this feature still provides some quite useful formatting of annotated strings.
+
+#### Downloadable Fonts
+
+Downloadable fonts have been around since the Oreo developer previews, and were made backwardly compatible Support Library 26, so there's really no reason not to be using them. When downloading these on-demand it is really important to add meta-data to the manifest so that these will get downloaded when your app is installed. This ensures that when your app is launched for the first time all of the required fonts have been downloaded to the device. I'm please to announce that there is now a mechanism to easily hook these in to Rialto so that you can use these in annotations.
+
+The key to this is by using the preloaded_fonts array that is used when <a href="https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts#predeclaring-fonts" rel="noopener" target="_blank">pre-declaring the fonts in the manifest</a>. This array will actually be generated for you automatically if you use the tools built in to Android Studio to manage downloadable fonts. It is this array that Rialto uses. A typical <code>@arrays/preloaded_fonts</code> file looks something like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/audiowide</item>
+        <item>@font/pacifico</item>
+    </array>
+</resources>
+```
+
+This defines two fonts which are used by the app – named “audiowide” and “pacifico”. To hook these up to Rialto we use FontRegistrar which was added to Rialto V1.2.0. We can use this either within our Application instance to provide support throughout the app, or in individual Activities to limit availability to specific Activities. Here we are applying it to the Application:
+
+```kotlin
+class KotlinApplication @JvmOverloads constructor(
+    registry: RialtoRegistry = Registry()
+) : Application(), RialtoRegistry by registry {
+
+    override fun onCreate() {
+        super.onCreate()
+        registerSpanFactory("format", "underline") { UnderlineSpan() }
+        FontRegistrar(this)
+            .registerFonts(this, "font", R.array.preloaded_fonts)
+    }
+}
+```
+
+The FontRegistrar takes a single context as an argument. FontRegistrar contains a single method named registerFonts() which takes three arguments: The first is the RialtoRegistry to which the fonts will be added (RialtoDelegate implements RialtoRegistry so can be used here also); the second is the attribute name to which the fonts will be registered; and the third is the ID of the preloaded_fonts array. FontRegistrar will iterate through the array and register each font using the name from the second argument, and a value equal to the font name which will create a Span to use the relevant font wherever it is encountered.
+
+Using the preloaded_fonts array that we looked at earlier would result in two items being registered, one for each font. An example will show this in action and will probably be easier to understand that the dry description:
+
+```xml
+<resources>
+    <string name="main_text">This has <annotation font="pacifico">two</annotation> <annotation font="audiowide">different</annotation> fonts</string>
+</resources>
+```
+
+The attribute names match those of the second argument to the registerFonts() method, and the values correspond to the font names from the preloaded_fonts array. Running this results in:
+
+<img src="./images/downloadable_fonts.png" width="400" />
+
+It is worth noting that since V1.2.0 Rialto is case insensitive, so using a font name of “Pacifico” is identical to using “pacifico”.
+
+There’s really nothing more to this – registering your preloaded_fonts array using FontRegistrar does all that you need, and you just need to use the appropriate annotations within your string resources to make use of them.
 
 #### Java Interoperability
 
