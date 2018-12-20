@@ -40,7 +40,7 @@ class SpannableFormatter {
                     .also { replacement ->
                         builder.replace(start(), end(), replacement)
                     }
-                reset()
+                reset(builder)
             }
         }
         return builder
