@@ -39,12 +39,15 @@ android {
         support.res.srcDirs += '../common/res'
         testAndroidx {
             java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+            resources.srcDir '../common/testCommonx/resources'
         }
         testMaterial {
             java.srcDirs += ['../common/testCommonx/java', "../common/test/java"]
+            resources.srcDir '../common/testCommonx/resources'
         }
         testSupport {
             java.srcDirs += ['../common/testSupport/java', "../common/test/java"]
+            resources.srcDir '../common/testSupport/resources'
         }
     }
     compileOptions {
@@ -72,4 +75,6 @@ dependencies {
     testImplementation testLibraries.supportRunner
     testImplementation testLibraries.supportEspressoCore
     testImplementation testLibraries.supportEspressoRules
+    testImplementation testLibraries.mockitoCore
+    testImplementation testLibraries.mockitoKotlin
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.text.style.UnderlineSpan;
 import com.stylingandroid.rialto.Registry;
 import com.stylingandroid.rialto.RialtoRegistry;
+import com.stylingandroid.rialto.font.FontRegistrar;
 import kotlin.jvm.functions.Function0;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,5 +35,6 @@ public class JavaApplication extends Application implements RialtoRegistry {
     public void onCreate() {
         super.onCreate();
         registerSpanFactory("format", "underline", UnderlineSpan::new);
+        new FontRegistrar(this).registerFonts(this, "font", R.array.preloaded_fonts);
     }
 }

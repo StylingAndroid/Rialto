@@ -4,10 +4,11 @@ import android.content.Context
 import android.content.ContextWrapper
 
 internal class RialtoFactoryContext(
-    base: Context, val delegate: RialtoDelegate
-) : ContextWrapper(base), RialtoDelegate by delegate {
+    base: Context,
+    private val registry: RialtoRegistry
+) : ContextWrapper(base), RialtoRegistry by registry {
 
     override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
-        delegate.registerSpanFactory(key, value, creator)
+        registry.registerSpanFactory(key, value, creator)
     }
 }

@@ -4,7 +4,7 @@ import android.text.Annotation
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 
-open class RialtoBaseDelegate(val registry: RialtoRegistry) : RialtoDelegate {
+open class RialtoBaseDelegate(private val registry: RialtoRegistry) : RialtoDelegate, RialtoRegistry by registry {
 
     override fun registerSpanFactory(key: String, value: String, creator: () -> Any) {
         registry.registerSpanFactory(key, value, creator)
